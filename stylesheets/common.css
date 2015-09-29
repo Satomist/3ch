@@ -1,0 +1,36 @@
+body {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.clearfix:after{
+  display: block;
+  clear: both;
+  content: "";
+}
+.container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+
+.header {
+	margin-left: 27%;
+}
+
+button {
+	background-color: #333;
+	border-bottom: none;
+	border-color: #fff;
+  border-radius: 10px 10px 0 0;        /* CSS3草案 */
+    -webkit-border-radius: 10px 10px 0 0;    /* Safari,Google Chrome用 */
+    	 -moz-border-radius: 10px 10px 0 0;   /* Firefox用 */
+	color: #fff;
+	float: left;
+	padding: 10px;
+	width: 150px;
+}
+
+.login {
+	font-size: 8px;
+}
