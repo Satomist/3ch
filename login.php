@@ -32,6 +32,6 @@
 		$url = "/3ch/threads.php";
 	}else{
 		echo "log in failed";
-		$url = "/3ch/index.html";
+		$url = "/3ch/index.php";
 	}
 	header("location: " . $url);

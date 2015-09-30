@@ -13,21 +13,25 @@
 	}
 
 
-	$stmt = $dbh->prepare("INSERT INTO users (nickname,email,password) VALUES (:nickname,:email,:password)")
-	;
+	$stmt = $dbh->prepare("INSERT INTO users (nickname,email,password) VALUES (:nickname,:email,:password)");
 	$stmt->bindParam(':nickname', $_POST['name'], PDO::PARAM_STR);
 	$stmt->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
 	$stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
-	$result = $stmt->execute();
+	$stmt->execute();
 
+	$stmt2 = $dbh->prepare("SELECT * FROM users WHERE nickname = :nickname LIMIT 1");
+	$stmt2->bindParam(':nickname', $_POST['name'], PDO::PARAM_STR);
+	$stmt2->execute();
+	$result = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+	session_start();
 
 	if($result){
-		echo "Completed Sign in as " . $name;
-		$url = "/3ch/home.html";
+		session_start();
+		$_SESSION['USERID'] = $result['id'];
+		$url = "/3ch/threads.php";
 	}else{
-		echo "Sign up failed </br>";
-		echo "Please try again";
-		$url = "/3ch/index.html";
+		echo "log in failed";
+		$url = "/3ch/index.php";
 	}
 	header("location: " . $url);
-
