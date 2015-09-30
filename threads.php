@@ -21,7 +21,8 @@
 			require_once "threads_get.php";
 
 			foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $thread){
-				echo $thread['name'] . "       " . $thread['updated'] . "   made by ";
+				echo "<a href=\"/3ch/threads/board.php?id=" .$thread['id'] . "\">";
+				echo $thread['name'] . "</a>       " . $thread['updated'] . "   made by ";
 
 				$stmt2->bindParam(':id', $thread['user_id'], PDO::PARAM_INT);
 				$stmt2->execute();
