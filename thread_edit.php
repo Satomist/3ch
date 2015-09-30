@@ -2,33 +2,33 @@
 	require_once "authenticate.php";
 	require_once "thread_get_by_id.php";
 	require_once "correct_user.php";
-	get_info($_GET['id']);
+	$result = get_info($_GET['id']);
 	correct_user($result['user_id']);
+?>
 
-	function get_info($thread_id){
-		try {
-	    $dbh = new PDO(
-	    	'mysql:host=localhost;
-	    	dbname=textboard',
-	    	'admin',
-	    	'CCJYzgrbN0qsIsOa'
-	  );
-		} catch (PDOException $e) {
-		    var_dump($e->getMessage());
-		    exit;
-		}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Log in</title>
+	<link href="/3ch/stylesheets/reset.css" rel="stylesheet">
+	<link href="/3ch/stylesheets/common.css" rel="stylesheet">
+</head>
+<body>
+	<div class="header">
+		<button type="button" onclick="location.href='/3ch/logout.php'">Log out</button>
+		</br>
+		++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</br>
+	</div>
 
-		$stmt = $dbh->prepare("UPDATE threads SET name = :name where id = :id"):
-		$stmt->bindParam(':id', $thread_id, PDO::PARAM_STR);
-		$stmt->bindParam(':name', $name, PDO::PARAM_STR);
-		$stmt->execute();
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		if($result){
-			echo "Title changed to" . $name;
-			header("Location: /3ch/threads/" . $thread_id);
-		}else{
-			echo "Error occured" . $name;
-			header("Location: /3ch/threads/" . $thread_id . "edit");
-		}
-	}
+	<div class="content">
+		<form action="thread_edit_do.php" method="post">
+			Current Title:<?php echo $result['name']; ?></br>
+		    New   Title:</br>
+		  <input type="text" name="name" size="50" value="" /></br>
+		  <input type="hidden" name="thread_id" value=<?php echo $_GET['id'] ?> />
+		  <input type="submit" value="変更する" />
+		</form>
+	</div>
+</body>
+</html>

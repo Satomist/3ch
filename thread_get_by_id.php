@@ -16,4 +16,6 @@
 		$stmt_get_info->bindParam(':id', $thread_id, PDO::PARAM_STR);
 		$stmt_get_info->execute();
 		$result = $stmt_get_info->fetch(PDO::FETCH_ASSOC);
+
+		return $result;
 	}

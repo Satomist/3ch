@@ -31,7 +31,7 @@
 				echo $owner;
 
 				if($thread['user_id']==$_SESSION["USERID"]){
-					$url = "location.href='/3ch/thread_edit.html?id=". $thread['id'] . "'";
+					$url = "location.href='/3ch/thread_edit.php?id=". $thread['id'] . "'";
 					echo $url;
 		?>
 					<button type="button" onclick=<?php echo $url ?> >Edit</button>
