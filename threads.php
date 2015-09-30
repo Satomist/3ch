@@ -31,10 +31,11 @@
 				echo $owner;
 
 				if($thread['user_id']==$_SESSION["USERID"]){
-					$url = "location.href='/3ch/thread_edit.php?id=". $thread['id'] . "'";
+					$url1 = "location.href='/3ch/thread_edit.php?id=". $thread['id'] . "'";
+					$url2 = "location.href='/3ch/thread_delete.php?id=". $thread['id'] . "'";
 		?>
-					<button type="button" onclick=<?php echo $url ?> >Edit</button>
-
+					<button type="button" onclick=<?php echo $url1 ?> >Edit</button>
+					<button type="button" onclick=<?php echo $url2 ?> >Delete</button>
 		<?php
 				}
 		?>
@@ -43,7 +44,10 @@
 		<?php
 			}
 		?>
-
+		<form action="thread_new.php" method="post">
+		  <input type="name" name="name" size=50 value="" /></br>
+		  <input type="submit" value="スレッド作成" />
+		</form>
 	</div>
 </body>
 </html>

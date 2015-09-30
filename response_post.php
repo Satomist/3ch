@@ -22,8 +22,6 @@
 	$stmt->bindParam(':thread_id', $_POST['thread_id'], PDO::PARAM_INT);
 	$result = $stmt->execute();
 
-	var_dump($result);
-
 	if($result){
 		$url = "/3ch/board.php?id=". $_POST['thread_id'];
 	}else{

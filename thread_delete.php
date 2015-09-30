@@ -1,4 +1,9 @@
 <?php
+	require_once "authenticate.php";
+	require_once "thread_get_by_id.php";
+	require_once "correct_user.php";
+	$result = get_info($_GET['id']);
+	correct_user($result['user_id']);
 
 	try {
     $dbh = new PDO(
@@ -12,12 +17,8 @@
 	    exit;
 	}
 
-	session_start();
-
-	$stmt = $dbh->prepare("INSERT INTO threads (name,user_id,updated) VALUES (:name,:user_id,:updated)");
-	$stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
-	$stmt->bindParam(':user_id', $_SESSION['USERID'], PDO::PARAM_INT);
-	$stmt->bindParam(':updated', date('Y-m-d'), PDO::PARAM_STR);
+	$stmt = $dbh->prepare("DELETE FROM threads WHERE id = :id");
+	$stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
 	$result = $stmt->execute();
 
 	if($result){

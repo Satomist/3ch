@@ -46,9 +46,11 @@
 				echo $author;
 
 				if($response['user_id']==$_SESSION["USERID"]){
-					$url = "location.href='/3ch/response_edit.php?id=". $response['id'] . "'";
+					$url1 = "location.href='/3ch/response_edit.php?id=". $response['id'] . "'";
+					$url2 = "location.href='/3ch/response_delete.php?id=". $response['id'] . "'";
 		?>
-					<button type="button" onclick=<?php echo $url ?> >Edit</button>
+					<button type="button" onclick=<?php echo $url1 ?> >Edit</button>
+					<button type="button" onclick=<?php echo $url2 ?> >Delete</button>
 					</br>
 		<?php
 				}
